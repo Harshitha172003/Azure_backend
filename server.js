@@ -17,9 +17,10 @@ app.post("/upload", async (req, res) => {
         const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
  
         const containerClient = blobServiceClient.getContainerClient(containerName);
+        const blobName = `sample-${Date.now()}.txt`;
         await containerClient.createIfNotExists();
  
-        const blobClient = containerClient.getBlockBlobClient("demo");
+        const blobClient = containerClient.getBlockBlobClient(blobName);
  
         const content = "Hello from Azure!";
         await blobClient.upload(content, content.length);
