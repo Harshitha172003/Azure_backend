@@ -16,7 +16,7 @@ app.post("/upload", async (req, res) => {
     try {
         const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
  
-        const containerClient = blobServiceClient.getContainerClient("demo-container");
+        const containerClient = blobServiceClient.getContainerClient(containerName);
         await containerClient.createIfNotExists();
  
         const blobClient = containerClient.getBlockBlobClient("demo");
